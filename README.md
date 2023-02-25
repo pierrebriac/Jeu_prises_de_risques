@@ -1,4 +1,4 @@
-# Jeu_prises_de_risques
+# Jeu étudiant le phénomène de la prises de risques
 
 ## Introduction
 
