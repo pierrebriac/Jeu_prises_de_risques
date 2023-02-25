@@ -8,6 +8,8 @@ from info_part import demander_age, id_participant
 from liste_questions import liste_questions
 from consignes import afficher_regles
 from argent import somme_argent
+from Predict_sexe_logistique import ana_descriptives, Modelisation_predictive, Analyse_Resultats_PDF
+from Predict_niveau_logistique import select_features_lasso, logistic_regression, final_model, enregistrer_dans_pdf
 argent = 100
 id_participant = id_participant()
 age_utilisateur = demander_age()
@@ -16,14 +18,14 @@ questions = liste_questions()
 
 reponses = creer_questionnaire(questions)
 
-def enregistrer_stats(stats, reponses, age_utilisateur, id_participant):
+def enregistrer_stats(stats, reponses, age_utilisateur, id_participant, argent):
     with open('stats.csv', 'a', newline='') as file:
-        fieldnames = ["ID", "Age"] + ["Question_{}".format(i+1) for i in range(len(reponses))]
+        fieldnames = ["ID", "Age", "Argent"] + ["Question_{}".format(i+1) for i in range(len(reponses))]
         fieldnames += list(stats.keys())
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         if file.tell() == 0:
             writer.writeheader()
-        row = {"ID": id_participant, "Age": age_utilisateur, **reponses, **stats}
+        row = {"ID": id_participant, "Age": age_utilisateur, "Argent": argent, **reponses, **stats}
         writer.writerow(row)
 
 
@@ -63,7 +65,7 @@ position_bouton4 = (largeur_fenetre // 2 - texte_bouton4.get_width() // 2, haute
 afficher_regles(info, largeur_fenetre, hauteur_fenetre, fenetre, blanc, noir, rouge)
 
 # Boucle principale du jeu
-for i in range(2): # boucle pour lancer le jeu x fois
+for i in range(10): # boucle pour lancer le jeu x fois
     en_cours = True
     valeur_retour = None # Initialisation de la valeur de retour
     while en_cours:
@@ -90,7 +92,7 @@ for i in range(2): # boucle pour lancer le jeu x fois
             # Appel de la fonction jeu()
             stats, argent = jeu(valeur_retour, i, argent)
             somme_argent(info, largeur_fenetre, hauteur_fenetre, fenetre, blanc, noir, rouge, argent)
-            enregistrer_stats(stats, reponses, age_utilisateur, id_participant)
+            enregistrer_stats(stats, reponses, age_utilisateur, id_participant, argent)
             en_cours = False
 
         # Effacement de l'écran
@@ -120,3 +122,11 @@ for i in range(2): # boucle pour lancer le jeu x fois
 pygame.quit()
 
 print("Vous avez gagné : " + str(argent) + "$")
+
+# Résultats :
+ana_descriptives()
+mse_reg, r2_reg, accuracy_clf, confusion_matrix_clf = Modelisation_predictive()
+Analyse_Resultats_PDF(mse_reg, r2_reg, accuracy_clf, confusion_matrix_clf)
+
+texte_inter = final_model()
+enregistrer_dans_pdf(texte_inter)

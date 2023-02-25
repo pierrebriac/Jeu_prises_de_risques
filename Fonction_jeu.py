@@ -45,23 +45,23 @@ def jeu(niveau, partie, argent):
 
     #Variables dépendant du niveau
     if niveau == 1 :
-        vitesse_boule = 0.5
-        freq = 500
+        vitesse_boule = 1
+        freq = 400
         gain = 10
         perte = -5
     if niveau == 2 :
-        vitesse_boule = 1
-        freq = 300
+        vitesse_boule = 2
+        freq = 200
         gain = 20
         perte = -10
     if niveau == 3 :
-        vitesse_boule = 2
-        freq = 200
+        vitesse_boule = 3
+        freq = 100
         gain = 40
         perte = -40
     if niveau == 4 :
-        vitesse_boule = 3
-        freq = 100
+        vitesse_boule = 4
+        freq = 50
         gain = 80
         perte = -80
 
