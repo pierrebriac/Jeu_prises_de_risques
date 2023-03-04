@@ -36,15 +36,15 @@ def afficher_regles(info, largeur_fenetre, hauteur_fenetre, fenetre, blanc, noir
         position_info4 = (largeur_fenetre // 2 - texte_info4.get_width() // 2, 2 * hauteur_fenetre // 4 + 3 * texte_info1.get_height())
         fenetre.blit(texte_info4, position_info4)
 
-        texte_info5 = police_info.render("Plus le niveau sélectionné est élevé plus il est difficile, mais il rapporte plus d'argent si vous le réussissez", True, noir)
+        texte_info5 = police_info.render("Plus le niveau sélectionné est élevé plus il est difficile, mais il rapportera plus d'argent si vous le réussissez", True, noir)
         position_info5 = (largeur_fenetre // 2 - texte_info5.get_width() // 2, 2 * hauteur_fenetre // 4 + 4 * texte_info1.get_height())
         fenetre.blit(texte_info5, position_info5)
 
-        texte_info6 = police_info.render("Mais si vous perdez plus le niveau que vous avez choisi est haut plus vous perdez d'argent", True, noir)
+        texte_info6 = police_info.render("En revanche si vous perdez, vous aller perdre plus.", True, noir)
         position_info6 = (largeur_fenetre // 2 - texte_info6.get_width() // 2, 2 * hauteur_fenetre // 4 + 5 * texte_info6.get_height())
         fenetre.blit(texte_info6, position_info6)
 
-        texte_info7 = police_info.render("Niveau 1 = +10 ou -5, Niveau 2 = +20 ou - 10, Niveau 3 = +40 ou -40, Niveau 4 = +80 ou - 80", True, noir)
+        texte_info7 = police_info.render("Niveau 1 = +10$ ou -5$, Niveau 2 = +20$ ou - 10$, Niveau 3 = +40$ ou -40$, Niveau 4 = +80$ ou - 80$", True, noir)
         position_info7 = (largeur_fenetre // 2 - texte_info7.get_width() // 2, 2 * hauteur_fenetre // 4 + 7 * texte_info7.get_height())
         fenetre.blit(texte_info7, position_info7)
 
