@@ -10,6 +10,7 @@ from consignes import afficher_regles
 from argent import somme_argent
 from Predict_sexe_logistique import ana_descriptives, Modelisation_predictive, Analyse_Resultats_PDF
 from Predict_niveau_logistique import select_features_lasso, logistic_regression, final_model, enregistrer_dans_pdf
+
 argent = 100
 id_participant = id_participant()
 age_utilisateur = demander_age()

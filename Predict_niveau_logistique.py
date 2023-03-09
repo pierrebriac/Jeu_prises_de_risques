@@ -9,6 +9,9 @@ from reportlab.pdfgen import canvas
 import re
 from fpdf import FPDF
 import os
+import warnings
+warnings.filterwarnings('ignore')
+
 
 def select_features_lasso():
     # Charger les données dans un dataframe pandas
@@ -54,7 +57,6 @@ def logistic_regression():
 
     # Calculer la précision du modèle
     accuracy = accuracy_score(y_test, y_pred)
-    print("Précision du modèle : " + str(accuracy))
 
     return clf, accuracy
 

@@ -20,24 +20,25 @@ def ana_descriptives():
     desc_stats = data[num_cols].describe()
     print(desc_stats)
 
-    # Affichage de la distribution de chaque colonne numérique avec des courbes
+    # Affichage de la distribution de chaque colonne numérique avec des courbes et une courbe de densité
     for col in ['Age', 'Argent', 'Niveau']:
-        plt.plot(data[col].value_counts(normalize=True).sort_index(), '-o')
+        data[col].plot(kind='hist', density=True, alpha=0.5, label='Histogramme')
+        data[col].plot(kind='density', label='Courbe de densité')
         plt.title("Répartition de la colonne " + col)
         plt.xlabel(col)
-        plt.ylabel("Proportion")
+        plt.ylabel("Densité")
+        plt.legend()
         plt.show()
-
 
     # Calcul de la proportion de réponses pour chaque valeur possible de Question_1
     prop_question1 = data['Question_1'].value_counts(normalize=True)
 
-    # Affichage du graphique en barres horizontales
-    prop_question1.plot(kind='barh')
+    # Affichage du graphique en camembert avec les légendes et les pourcentages
+    prop_question1.plot(kind='pie', autopct='%1.1f%%', labels=prop_question1.index)
     plt.title("Répartition des sexes")
-    plt.xlabel("Proportion")
-    plt.ylabel("Réponse")
+    plt.legend()
     plt.show()
+
 
 def Modelisation_predictive():
     # Chargement des données depuis le fichier stats.csv
